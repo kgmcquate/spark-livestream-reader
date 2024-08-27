@@ -3,12 +3,12 @@ This is a library for streaming video livestreams from YouTube with Apache Spark
 ## Installation
 Add the following to your `build.sbt` file:
 ```scala
-libraryDependencies += "com.kgmcquate" %% "spark-livestream-reader" % "0.1"
+libraryDependencies += "com.kgmcquate" %% "spark-livestream-reader" % "0.2.0"
 ```
 
 Or add the Maven coordinates to your PySpark job:
 ```bash
-spark-submit --packages com.kgmcquate::spark-livestream-reader:0.1
+spark-submit --packages com.kgmcquate::spark-livestream-reader:0.2.0
 ```
 
 ## Usage
