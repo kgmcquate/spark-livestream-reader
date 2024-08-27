@@ -32,7 +32,7 @@ case class Frames(
     }
 
     def next(): Frame = {
-      imencode(".jpg", frame, output)
+      imencode(".png", frame, output)
       index += 1
       Frame(output.toArray, FrameOffset(mediaSequence, index, framesPerSecond))
     }

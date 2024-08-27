@@ -2,7 +2,7 @@ scalaVersion := "2.13.14"
 
 name := "spark-livestream-reader"
 organization := "com.kgmcquate"
-version := "0.1"
+version := "0.2.0"
 
 val sparkVersion = "3.5.2"
 
@@ -18,5 +18,5 @@ libraryDependencies ++= Seq(
     "org.scalatest" %% "scalatest" % "3.2.16" % Test
 )
 
-ThisBuild / githubOwner := "kgmcquate"
-ThisBuild / githubRepository := "spark-livestream-reader"
+//ThisBuild / githubOwner := "kgmcquate"
+//ThisBuild / githubRepository := "spark-livestream-reader"
