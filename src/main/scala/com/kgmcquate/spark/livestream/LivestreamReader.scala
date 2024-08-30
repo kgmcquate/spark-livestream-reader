@@ -29,7 +29,7 @@ class LivestreamReader extends TableProvider {
 }
 
 object LivestreamReader {
-  val frameSchema: StructType = StructType(Seq(
+  val frameSchema: StructType = StructType(Array(
     StructField(s"ts", TimestampType, nullable = false),
     StructField(s"frame_data", BinaryType, nullable = true)
   ))
