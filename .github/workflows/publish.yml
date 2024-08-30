@@ -16,7 +16,7 @@ jobs:
     name: 'SBT Publish'
     runs-on: ubuntu-latest
     environment: production
-    container: hseeberger/scala-sbt:11.0.12_1.5.5_2.13.6
+    container: sbtscala/scala-sbt:eclipse-temurin-alpine-17.0.10_7_1.10.1_2.13.14
     defaults:
       run:
         shell: bash
