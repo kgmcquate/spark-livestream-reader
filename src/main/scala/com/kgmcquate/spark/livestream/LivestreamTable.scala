@@ -9,6 +9,7 @@ import org.apache.spark.sql.types.StructType
 import org.apache.spark.sql.util.CaseInsensitiveStringMap
 
 import java.util
+import scala.jdk.CollectionConverters.setAsJavaSetConverter
 
 case class LivestreamTable(override val schema: StructType,
                            override val partitioning: Array[Transform],
@@ -26,7 +27,7 @@ case class LivestreamTable(override val schema: StructType,
   override def name(): String = params.url
 
   override def capabilities(): util.Set[TableCapability] = {
-    util.Set.of[TableCapability](TableCapability.MICRO_BATCH_READ)
+    Set[TableCapability](TableCapability.MICRO_BATCH_READ).asJava
   }
 
   override def newScanBuilder(options: CaseInsensitiveStringMap): ScanBuilder = {
