@@ -27,7 +27,6 @@ case class LivestreamTable(override val schema: StructType,
 
   override def capabilities(): util.Set[TableCapability] = {
     util.Set.of[TableCapability](TableCapability.MICRO_BATCH_READ)
-
   }
 
   override def newScanBuilder(options: CaseInsensitiveStringMap): ScanBuilder = {
