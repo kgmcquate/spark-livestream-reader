@@ -2,7 +2,7 @@ scalaVersion := "2.12.17"
 
 name := "spark-livestream-reader"
 organization := "com.kgmcquate"
-version := "0.5.0"
+version := "0.6.0"
 
 val sparkVersion = "3.5.2"
 
