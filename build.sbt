@@ -18,5 +18,5 @@ libraryDependencies ++= Seq(
     "org.scalatest" %% "scalatest" % "3.2.16" % Test
 )
 
-ThisBuild / githubOwner := "kgmcquate"
-ThisBuild / githubRepository := "spark-livestream-reader"
+//ThisBuild / githubOwner := "kgmcquate"
+//ThisBuild / githubRepository := "spark-livestream-reader"
