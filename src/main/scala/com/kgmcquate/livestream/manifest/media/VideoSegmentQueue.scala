@@ -2,8 +2,6 @@ package com.kgmcquate.livestream.manifest.media
 
 import com.kgmcquate.livestream.video.VideoSegment
 
-import scala.jdk.CollectionConverters.IterableHasAsJava
-
 /**
  * A queue of video segments. This is used to keep track of the video segments that have yet to be downloaded.
  * New segments are added to the end of the queue.

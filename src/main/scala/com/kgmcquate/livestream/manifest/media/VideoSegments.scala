@@ -6,7 +6,7 @@ import com.kgmcquate.livestream.video.VideoSegment
 import io.lindstrom.m3u8.model.MediaSegment
 
 import java.time.Duration
-import scala.jdk.CollectionConverters.IteratorHasAsScala
+import scala.jdk.CollectionConverters.asScalaIteratorConverter
 
 
 
