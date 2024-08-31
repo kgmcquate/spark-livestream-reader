@@ -6,7 +6,8 @@ import io.lindstrom.m3u8.parser.{MediaPlaylistParser, ParsingMode}
 import java.io.{BufferedReader, InputStreamReader}
 import java.net.{HttpURLConnection, URL}
 import java.time.{Duration, Instant}
-import scala.jdk.CollectionConverters.{CollectionHasAsScala, IteratorHasAsJava}
+import scala.jdk.CollectionConverters.{asJavaIteratorConverter, asScalaBufferConverter}
+
 
 case class PlaylistReader(mediaManifestInfo: MediaManifestInfo) {
   private var currentMediaManifest: MediaPlaylist = _
