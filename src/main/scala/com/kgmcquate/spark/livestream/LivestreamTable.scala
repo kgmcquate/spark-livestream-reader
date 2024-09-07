@@ -39,6 +39,8 @@ case class LivestreamTable(override val schema: StructType,
       .withSegmentQueue(videoSegmentQueue)
   }
 
+
+
 //  override def partitioning(): Array[Transform] = {
 //    Array()
 //  }

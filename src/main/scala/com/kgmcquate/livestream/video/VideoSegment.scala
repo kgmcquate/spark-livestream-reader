@@ -3,8 +3,6 @@ package com.kgmcquate.livestream.video
 import com.kgmcquate.livestream.frame
 import com.kgmcquate.livestream.frame.Frames
 import com.kgmcquate.livestream.manifest.media.{MediaManifestInfo, MediaSegmentWrapper, MediaSequence}
-import io.lindstrom.m3u8.model.MediaSegment
-import nu.pattern.OpenCV
 
 import java.io.FileOutputStream
 import java.net.{HttpURLConnection, URL}
@@ -35,6 +33,7 @@ case class VideoSegment(
   }
 
   def writeVideoToFile(filePath: String): Unit = {
+    println(s"Writing video to file: $filePath")
     val videoStream = getVideoAsStream()
     val outputStream = new FileOutputStream(filePath)
     val buffer = new Array[Byte](1024)
@@ -47,15 +46,11 @@ case class VideoSegment(
     outputStream.close()
   }
 
-  private def initializeOpenCV(): Unit = {
-    OpenCV.loadLocally()
-  }
-
   def getFrames(tempPath: String): Frames = {
-    initializeOpenCV()
-    val videoFilename = Paths.get(tempPath, s"yt_segment_${UUID.randomUUID()}.mpeg").toString
+    val videoFilename = Paths.get(tempPath, s"yt_segment_${UUID.randomUUID()}.ts").toString
 
     writeVideoToFile(videoFilename)
-    frame.Frames(videoFilename, duration(), mediaManifestInfo.frameRate, mediaSequence)
+    frame.Frames(videoFilename, duration(), mediaManifestInfo.frameRate, mediaSequence, tempPath)
   }
+
 }

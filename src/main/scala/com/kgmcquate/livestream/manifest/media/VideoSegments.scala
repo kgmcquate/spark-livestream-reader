@@ -19,7 +19,7 @@ case class VideoSegments(
 
   private val startTime = startingMediaSequence.time
 
-  private val segments: Array[VideoSegment] = {
+  private val segments: Iterator[VideoSegment] = {
     var timeOffset: Duration = Duration.ZERO
     var mediaSequence = startingMediaSequence.mediaSequence
 
@@ -50,10 +50,10 @@ case class VideoSegments(
 
     println(s"VideoSegments Created ${segments.length} segments")
 
-    segments
+    segments.iterator
   }
 
-  def getSegments(): Array[VideoSegment] = {
+  def getSegments(): Iterator[VideoSegment] = {
     segments
   }
 
