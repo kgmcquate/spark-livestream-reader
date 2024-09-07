@@ -8,7 +8,9 @@ class LivestreamPartitionReader(partition: LivestreamPartition, params: Livestre
   private val frameIterator = partition.videoSegments.flatMap(_.getFrames(params.tempPath)).iterator
 
   override def next(): Boolean = {
-    frameIterator.hasNext
+    val hasNext = frameIterator.hasNext
+    println(s"Checking next frame: $hasNext")
+    hasNext
   }
 
   override def get(): InternalRow = {

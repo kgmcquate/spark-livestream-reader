@@ -6,6 +6,7 @@ import org.opencv.imgcodecs.Imgcodecs.imencode
 import org.opencv.videoio.VideoCapture
 
 import java.io.File
+import java.nio.file.Path
 
 case class Frames(
                    videoFilename: String,
@@ -18,6 +19,12 @@ case class Frames(
   private var index = -1
 
   def iterator: Iterator[Frame] = new Iterator[Frame] {
+    val f = new java.io.File(videoFilename)
+    if (f.exists && !f.isDirectory) {
+      println(s"Video file exists: $videoFilename")
+    } else {
+      throw new Exception(s"Video file does not exist: $videoFilename")
+    }
     val frame = new Mat()
     val output = new MatOfByte()
     val camera = new VideoCapture(videoFilename)
