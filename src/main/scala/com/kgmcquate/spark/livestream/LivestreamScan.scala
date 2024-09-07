@@ -51,7 +51,7 @@ class LivestreamScan(segmentQueue: VideoSegmentQueue, params: LivestreamSparkPar
     val partitionedSegments = segments.grouped(params.segmentsPerPartition)
     partitionedSegments.map(segmentGroup => {
       LivestreamPartition(
-        segmentGroup.iterator
+        segmentGroup
       )
     }).toArray
   }
