@@ -13,6 +13,7 @@ class LivestreamPartitionReader(partition: LivestreamPartition, params: Livestre
 
   override def get(): InternalRow = {
     val frame = frameIterator.next()
+    println(s"Getting next frame: ${frame.frameSequence.time}")
     InternalRow(
       frame.frameSequence.time.toEpochMilli * 1000L,
       frame.frame
