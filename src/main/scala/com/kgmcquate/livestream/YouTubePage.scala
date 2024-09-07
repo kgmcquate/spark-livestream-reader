@@ -20,7 +20,7 @@ case class YouTubePage(url: String) {
     val jsonString = YouTubePage.findScriptWithStreamData(scripts).split("};", 2).head + "}"
     val parsed = ujson.read(jsonString)
     if (!parsed.obj.contains("streamingData")) {
-      throw new Exception(s"No stream found. Page received: \n${doc.data()}")
+      throw new Exception(s"No stream found. Page received: \n${doc.data()}\n Parsed: \n${parsed.obj}")
     }
 
     parsed("streamingData")("hlsManifestUrl").str
