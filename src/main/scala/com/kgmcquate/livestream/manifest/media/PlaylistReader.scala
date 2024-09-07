@@ -6,7 +6,7 @@ import io.lindstrom.m3u8.parser.{MediaPlaylistParser, ParsingMode}
 import java.io.{BufferedReader, InputStreamReader}
 import java.net.{HttpURLConnection, URL}
 import java.time.{Duration, Instant}
-import scala.jdk.CollectionConverters.{asJavaIteratorConverter, asScalaBufferConverter}
+import scala.jdk.CollectionConverters.{asScalaBufferConverter}
 
 
 case class PlaylistReader(mediaManifestInfo: MediaManifestInfo) {
@@ -70,7 +70,7 @@ case class PlaylistReader(mediaManifestInfo: MediaManifestInfo) {
     println(s"Creating new VideoSegments from mediaSegments: ${currentMediaManifest.mediaSegments().size()}")
 
     VideoSegments(
-      currentMediaManifest.mediaSegments().asScala.map(MediaSegmentWrapper.fromMediaSegment).iterator.asJava,
+      currentMediaManifest.mediaSegments().asScala.map(MediaSegmentWrapper.fromMediaSegment).iterator.toArray,
       currentStartSequence,
       currentEndSequence,
       mediaManifestInfo

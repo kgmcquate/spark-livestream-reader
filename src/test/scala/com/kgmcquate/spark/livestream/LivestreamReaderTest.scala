@@ -68,8 +68,11 @@ final class LivestreamReaderTest extends AnyFlatSpec with BeforeAndAfterAll  {
       .master(s"local")
       .getOrCreate()
 
-    val confluent_cloud_api_key = sys.env("confluent_cloud_api_key")
-    val confluent_cloud_api_secret = sys.env("confluent_cloud_api_secret")
+//    val confluent_cloud_api_key = sys.env("CONFLUENT_CLOUD_API_KEY")
+//    val confluent_cloud_api_secret = sys.env("CONFLUENT_CLOUD_API_SECRET")
+
+    val confluent_cloud_api_key="BDZDYKYZIDEF5ERV"
+    val confluent_cloud_api_secret="uhZ2NbBf+02fcR4TAK4HZv7jcKBRROVrnLM+/XM9x1t65nFuR42tc4993PiT803S"
     val url = "https://www.youtube.com/watch?v=ydYDqZQpim8"
     spark
       .readStream

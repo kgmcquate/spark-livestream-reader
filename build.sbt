@@ -1,3 +1,4 @@
+
 scalaVersion := "2.12.17"
 
 name := "spark-livestream-reader"
@@ -20,3 +21,6 @@ libraryDependencies ++= Seq(
 
 ThisBuild / githubOwner := "kgmcquate"
 ThisBuild / githubRepository := "spark-livestream-reader"
+
+
+githubTokenSource := TokenSource.Environment("GITHUB_TOKEN") || TokenSource.GitConfig("github.token")

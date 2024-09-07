@@ -38,7 +38,7 @@ case class Frames(
     }
   }
 
-  def getFramesAt(secondsFromStart: Iterable[Double]): Iterable[Frame] = {
+  def getFramesAt(secondsFromStart: Array[Double]): Array[Frame] = {
     val frameTimes = (0 until numFrames).map(i => (i, i * framePeriod))
     val indexesToGet =
       secondsFromStart
@@ -55,23 +55,26 @@ case class Frames(
       .zipWithIndex
       .filter { case (_, index) => indexesToGet.contains(index) }
       .map { case (frame, _) => frame }
+      .toArray
   }
 
-  def getFramesEvery(seconds: Double, start: Double = 0.0): Iterable[Frame] = {
+  def getFramesEvery(seconds: Double, start: Double = 0.0): Array[Frame] = {
     val desiredFrameTimes =
       (BigDecimal(0.0) until BigDecimal(lengthSeconds) by seconds)
         .map(_ + start)
         .map(_.toDouble)
+        .toArray
 
     getFramesAt(desiredFrameTimes)
   }
 
-  def getFrameNumbers(numbers: Array[Int]): Iterable[Frame] = {
+  def getFrameNumbers(numbers: Array[Int]): Array[Frame] = {
     this
       .zipWithIndex
       .filter {
         case (_, index) => numbers.contains(index)
       }
       .map { case (frame, _) => frame }
+      .toArray
   }
 }

@@ -11,7 +11,7 @@ import scala.jdk.CollectionConverters.asScalaIteratorConverter
 
 
 case class VideoSegments(
-                          private val mediaSegments: java.util.Iterator[MediaSegmentWrapper],
+                          private val mediaSegments: Array[MediaSegmentWrapper],
                           private val startingMediaSequence: MediaSequence,
                           private val endingMediaSequence: MediaSequence,
                           mediaManifestInfo: MediaManifestInfo
@@ -23,7 +23,7 @@ case class VideoSegments(
     var timeOffset: Duration = Duration.ZERO
     var mediaSequence = startingMediaSequence.mediaSequence
 
-    val mediaSegmentsList = mediaSegments.asScala.toList
+    val mediaSegmentsList = mediaSegments
 
     println(s"Creating new VideoSegments from mediaSegments: ${mediaSegmentsList.length}")
     println(s"Creating new VideoSegments from mediaSegments: ${mediaSegmentsList.length}")
@@ -53,7 +53,7 @@ case class VideoSegments(
     segments.iterator
   }
 
-  def getSegments(): Iterator[VideoSegment] = {
+  def getSegments(): Array[VideoSegment] = {
     segments
   }
 

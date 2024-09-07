@@ -17,7 +17,7 @@ case class VideoSegmentQueue() {
 //    queue.enqueue(videoSegment)
   }
 
-  def add(videoSegments: Iterable[VideoSegment]): Unit = {
+  def add(videoSegments: Array[VideoSegment]): Unit = {
     videoSegments.map(queue.add)
   }
 
@@ -25,11 +25,11 @@ case class VideoSegmentQueue() {
     Option(queue.poll())
   }
 
-  def take(n: Int): Iterator[VideoSegment] = {
+  def take(n: Int): Array[VideoSegment] = {
     (1 to n).iterator.flatMap(_ => Option(queue.poll())).map(s => {
       println(s"Queue Taking video segment: ${s.mediaSequence.mediaSequence}")
       s
-    })
+    }).toArray
   }
 
   def lastSequence: Option[MediaSequence] = {
