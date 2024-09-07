@@ -15,7 +15,13 @@ case class YouTubePage(url: String) {
   }
 
   private def getManifestUrl: String = {
-    val doc = Jsoup.connect(url).get
+    val resp = Jsoup.connect(url)
+      .userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36")
+      .referrer("http://www.google.com")
+      .followRedirects(true)
+      .execute()
+
+    val doc = resp.parse()
     val scripts = doc.getElementsByTag("script")
     val jsonString = YouTubePage.findScriptWithStreamData(scripts).split("};", 2).head + "}"
     val parsed = ujson.read(jsonString)
