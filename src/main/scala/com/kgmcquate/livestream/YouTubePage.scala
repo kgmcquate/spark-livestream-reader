@@ -18,7 +18,12 @@ case class YouTubePage(url: String) {
     val doc = Jsoup.connect(url).get
     val scripts = doc.getElementsByTag("script")
     val jsonString = YouTubePage.findScriptWithStreamData(scripts).split("};", 2).head + "}"
-    ujson.read(jsonString)("streamingData")("hlsManifestUrl").str
+    val parsed = ujson.read(jsonString)
+    if (!parsed.obj.contains("streamingData")) {
+      throw new Exception(s"No stream found. Page received: \n${doc.data()}")
+    }
+
+    parsed("streamingData")("hlsManifestUrl").str
   }
 
   def getCurrentManifestUrl: String = {
