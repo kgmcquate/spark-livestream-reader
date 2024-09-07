@@ -19,7 +19,7 @@ case class VideoSegments(
 
   private val startTime = startingMediaSequence.time
 
-  private val segments = {
+  private val segments: Array[VideoSegment] = {
     var timeOffset: Duration = Duration.ZERO
     var mediaSequence = startingMediaSequence.mediaSequence
 
@@ -30,27 +30,27 @@ case class VideoSegments(
 
     val segments =
       mediaSegmentsList
-      .map(mediaSegment  => {
-        val segment =
-          VideoSegment(
-            mediaSegment,
-            MediaSequence(
-              mediaSequence,
-              timeOffset,
-              startTime.plus(timeOffset)
-            ),
-            mediaManifestInfo
-          )
+        .map(mediaSegment => {
+          val segment =
+            VideoSegment(
+              mediaSegment,
+              MediaSequence(
+                mediaSequence,
+                timeOffset,
+                startTime.plus(timeOffset)
+              ),
+              mediaManifestInfo
+            )
 
-        println(s"VideoSegments Created segment ${segment.mediaSequence.mediaSequence} at ${segment.mediaSequence.time}")
-        timeOffset = timeOffset.plusNanos((mediaSegment.duration() * 1e9).toLong)
-        mediaSequence += 1
-        segment
-      })
+          println(s"VideoSegments Created segment ${segment.mediaSequence.mediaSequence} at ${segment.mediaSequence.time}")
+          timeOffset = timeOffset.plusNanos((mediaSegment.duration() * 1e9).toLong)
+          mediaSequence += 1
+          segment
+        })
 
-    println(s"VideoSegments Created ${segments.size} segments")
+    println(s"VideoSegments Created ${segments.length} segments")
 
-    segments.iterator
+    segments
   }
 
   def getSegments(): Array[VideoSegment] = {
