@@ -5,7 +5,7 @@ import org.apache.spark.sql.catalyst.InternalRow
 import org.apache.spark.sql.connector.read.PartitionReader
 
 class LivestreamPartitionReader(partition: LivestreamPartition, params: LivestreamParams) extends PartitionReader[InternalRow] {
-  private val frameIterator = partition.videoSegments.flatMap(_.getFrames(params.tempPath))
+  private val frameIterator = partition.videoSegments.flatMap(_.getFrames(params.tempPath)).iterator
 
   override def next(): Boolean = {
     frameIterator.hasNext
